@@ -22,6 +22,11 @@ bot.start((ctx) =>
   )
 );
 
+bot.on("text", (ctx)=>{
+  ctx.replyWithPhoto({url: `https://imgflip.com/i/6nqwiv`});
+  ctx.reply("Mention me @bestincomradebot alongside your caption in your chats to generate a meme");
+});
+
 bot.command("help", (ctx) =>
   ctx.reply(
     'Mention me @best_in_comrade_bot alongside your caption in your chats to generate a  \n Example: @best_in_comrade_bot "Baddest Comrade"'
