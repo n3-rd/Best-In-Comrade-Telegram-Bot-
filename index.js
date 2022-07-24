@@ -1,11 +1,19 @@
 require("dotenv").config();
 
 const { Telegraf } = require("telegraf");
+const express = require('express');
+const expressApp = express();
 const axios = require("axios");
 
-const bot = new Telegraf(process.env.BOT_TOKEN);
-// const Scene = require('telegraf/l')
-// const { enter, leave } = Stage
+const API_TOKEN = process.env.API_TOKEN || '';
+const PORT = process.env.PORT || 3000;
+const URL = process.env.URL || 'https://best-in-bot.herokuapp.com';
+
+
+const bot = new Telegraf(API_TOKEN);
+bot.telegram.setWebhook(`${URL}/bot${API_TOKEN}`);
+expressApp.use(bot.webhookCallback(`/bot${API_TOKEN}`));
+
 
 bot.start((ctx) =>
   ctx.reply(
@@ -55,3 +63,11 @@ bot.on("inline_query", async (ctx) => {
   }
 });
 bot.launch();
+
+
+expressApp.get('/', (req, res) => {
+    res.send('Hello World!');
+  });
+  expressApp.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
