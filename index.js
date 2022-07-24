@@ -23,8 +23,10 @@ bot.start((ctx) =>
 bot.on("text", (ctx) => {
   if(ctx.message.text.includes("help")){
     ctx.reply(
-      'Mention me @best_in_comrade_bot alongside your caption in your chats to generate a  \n Example: @best_in_comrade_bot "Baddest Comrade"'
+      'Mention me @bestincomradebot alongside your caption in your chats to generate a meme  \n Example: @bestincomradebot "Baddest Comrade"'
     )
+    
+
   }
   else{
     ctx.replyWithPhoto("https://i.imgflip.com/6nqwiv.jpg");
@@ -38,7 +40,7 @@ bot.on("text", (ctx) => {
 
 bot.command("help", (ctx) =>
   ctx.reply(
-    'Mention me @best_in_comrade_bot alongside your caption in your chats to generate a  \n Example: @best_in_comrade_bot "Baddest Comrade"'
+    'Mention me @bestincomradebot alongside your caption in your chats to generate a  \n Example: @bestincomradebot "Baddest Comrade"'
   )
 );
 
