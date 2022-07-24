@@ -45,7 +45,7 @@ bot.on("inline_query", async (ctx) => {
         const response = await axios.get(
             `https://api.imgflip.com/caption_image?template_id=393371323&username=${process.env.IMGFLIP_USERNAME}&password=${process.env.IMGFLIP_PASS}&text1=${query}`
           );
-            console.log(response.data.data.url);
+            // console.log(response.data.data.url);
             var url = response.data.data.url;
             ctx.answerInlineQuery([
                 {
@@ -64,7 +64,10 @@ bot.on("inline_query", async (ctx) => {
         console.log(error);
     }
     }
+
+    setTimeout(() => {
     getMeme();
+    }, 2000);
 
     
 });
