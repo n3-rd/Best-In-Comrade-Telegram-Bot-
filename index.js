@@ -46,7 +46,7 @@ bot.on("inline_query", async (ctx) => {
         `https://api.imgflip.com/caption_image?template_id=393371323&username=${process.env.IMGFLIP_USERNAME}&password=${process.env.IMGFLIP_PASS}&text1=${query}`
       )
       .then((res) => {
-        url = res.data.data.url;
+       var url = res.data.data.url;
       });
     ctx.answerInlineQuery([
       {
