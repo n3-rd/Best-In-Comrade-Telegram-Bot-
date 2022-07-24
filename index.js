@@ -4,6 +4,7 @@ const { Telegraf } = require("telegraf");
 const express = require('express');
 const expressApp = express();
 const axios = require("axios");
+const { uid } = require("uid");
 
 const API_TOKEN = process.env.API_TOKEN || '';
 const PORT = process.env.PORT || 3000;
@@ -48,7 +49,7 @@ bot.on("inline_query", async (ctx) => {
         const response = await axios.get(
             `https://api.imgflip.com/caption_image?template_id=393371323&username=${process.env.IMGFLIP_USERNAME}&password=${process.env.IMGFLIP_PASS}&text1=${query}`
           ).then((response) => {
-            // console.log(response.data.data.url);
+            console.log(response);
     setTimeout(function() {
 
     //         // response.data.data.url
@@ -60,7 +61,7 @@ bot.on("inline_query", async (ctx) => {
                   thumb_url: response.data.data.url,
                   caption: query,
                   title: "genrated with @bestincomradebot",
-                  photo_file_id: response.data.data.url,
+                  photo_file_id: uid(20),
           
                 },
               ]);
