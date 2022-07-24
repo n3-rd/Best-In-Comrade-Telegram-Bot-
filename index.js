@@ -42,32 +42,39 @@ bot.on("inline_query", async (ctx) => {
 
   async function getMeme() {
     try {
+        if(query.length > 1) {
+
+        
         const response = await axios.get(
             `https://api.imgflip.com/caption_image?template_id=393371323&username=${process.env.IMGFLIP_USERNAME}&password=${process.env.IMGFLIP_PASS}&text1=${query}`
-          );
+          ).then((response) => {
             // console.log(response.data.data.url);
-            var photoUrl = await response.data.data.url;
+    setTimeout(() => {
+
+            response.data.data.url
+    }, 2000);
             ctx.answerInlineQuery([
                 {
                   type: "photo",
                   id: "1",
-                  photo_url: photoUrl,
-                  thumb_url: photoUrl,
+                  photo_url: response.data.data.url,
+                  thumb_url: response.data.data.url,
                   caption: query,
                   title: "genrated with @bestincomradebot",
-                  photo_file_id: photoUrl,
+                  photo_file_id: response.data.data.url,
           
                 },
               ]);
-            return photoUrl;
+            });
+        }
+            // return photoUrl;
     } catch (error) {
         console.log(error);
     }
     }
 
-    setTimeout(() => {
     getMeme();
-    }, 2000);
+
 
     
 });
