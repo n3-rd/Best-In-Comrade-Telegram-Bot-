@@ -40,27 +40,33 @@ bot.on("inline_query", async (ctx) => {
   console.log(query);
   var url;
 
-  try {
-    await axios
-      .get(
-        `https://api.imgflip.com/caption_image?template_id=393371323&username=${process.env.IMGFLIP_USERNAME}&password=${process.env.IMGFLIP_PASS}&text1=${query}`
-      )
-      .then((res) => {
-       var url = res.data.data.url;
-      });
-    ctx.answerInlineQuery([
-      {
-        type: "photo",
-        id: "1",
-        photo_url: url,
-        thumb_url: url,
-        caption: query,
-        title: "genrated with @bestincomradebot",
-      },
-    ]);
-  } catch (error) {
-    console.log(error);
-  }
+  async function getMeme() {
+    try {
+        const response = await axios.get(
+            `https://api.imgflip.com/caption_image?template_id=393371323&username=${process.env.IMGFLIP_USERNAME}&password=${process.env.IMGFLIP_PASS}&text1=${query}`
+          );
+            console.log(response.data.data.url);
+            url = response.data.data.url;
+            ctx.answerInlineQuery([
+                {
+                  type: "photo",
+                  id: "1",
+                  photo_url: url,
+                  thumb_url: url,
+                  caption: query,
+                  title: "genrated with @bestincomradebot",
+                  photo_file_id: url,
+          
+                },
+              ]);
+            return url;
+    } catch (error) {
+        console.log(error);
+    }
+    }
+    getMeme();
+
+    
 });
 bot.launch();
 
