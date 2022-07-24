@@ -21,11 +21,19 @@ bot.start((ctx) =>
 );
 
 bot.on("text", (ctx) => {
+  if(ctx.message.text.includes("help")){
+    ctx.reply(
+      'Mention me @best_in_comrade_bot alongside your caption in your chats to generate a  \n Example: @best_in_comrade_bot "Baddest Comrade"'
+    )
+  }
+  else{
+    ctx.replyWithPhoto("https://i.imgflip.com/6nqwiv.jpg");
+    ctx.reply(
+      "Mention me @bestincomradebot alongside your caption in your chats to generate a meme"
+    );
+  }
   // reply with meme
-  ctx.replyWithPhoto("https://i.imgflip.com/6nqwiv.jpg");
-  ctx.reply(
-    "Mention me @bestincomradebot alongside your caption in your chats to generate a meme"
-  );
+ 
 });
 
 bot.command("help", (ctx) =>
