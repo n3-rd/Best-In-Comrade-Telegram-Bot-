@@ -46,20 +46,20 @@ bot.on("inline_query", async (ctx) => {
             `https://api.imgflip.com/caption_image?template_id=393371323&username=${process.env.IMGFLIP_USERNAME}&password=${process.env.IMGFLIP_PASS}&text1=${query}`
           );
             // console.log(response.data.data.url);
-            url = response.data.data.url;
+            var photoUrl = await response.data.data.url;
             ctx.answerInlineQuery([
                 {
                   type: "photo",
                   id: "1",
-                  photo_url: url,
-                  thumb_url: url,
+                  photo_url: photoUrl,
+                  thumb_url: photoUrl,
                   caption: query,
                   title: "genrated with @bestincomradebot",
-                  photo_file_id: url,
+                  photo_file_id: photoUrl,
           
                 },
               ]);
-            return url;
+            return photoUrl;
     } catch (error) {
         console.log(error);
     }
