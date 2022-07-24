@@ -42,17 +42,17 @@ bot.on("inline_query", async (ctx) => {
 
   async function getMeme() {
     try {
-        if(query.length > 1) {
+        if(query.length > 2) {
 
         
         const response = await axios.get(
             `https://api.imgflip.com/caption_image?template_id=393371323&username=${process.env.IMGFLIP_USERNAME}&password=${process.env.IMGFLIP_PASS}&text1=${query}`
           ).then((response) => {
             // console.log(response.data.data.url);
-    setTimeout(() => {
+    // setTimeout(() => {
 
-            response.data.data.url
-    }, 2000);
+    //         // response.data.data.url
+    // }, 2000);
             ctx.answerInlineQuery([
                 {
                   type: "photo",
